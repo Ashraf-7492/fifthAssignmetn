@@ -1,13 +1,16 @@
+// Search menu list by letter
 
-const displayMeal = () => {
 
-    const searchName = document.getElementById('take-input').value;
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchName}`
+    const displayMeal = () => {
+    const input = document.getElementById('take-input').value;
+   
+     const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${input}`
      fetch(url)
     .then(res => res.json())
     .then(data => mealName (data.meals));}
 
-const mealName = meals => {
+        const mealName = meals => {
+
         const mealNameContainer = document.getElementById('search-result');
    
     for (let i = 0; i < meals.length; i++) {
@@ -22,21 +25,15 @@ const mealName = meals => {
 
         mealName.innerHTML = mealInfo;
         mealNameContainer.appendChild(mealName);
-        
-        
-        
-       
-        
-    }
+        const displayHide = document.getElementById('search-result');
+        displayHide.style.display = 'grid';
+        const displayHideDetails = document.getElementById('menuDetails');
+        displayHideDetails.style.display = 'none';}}
 
 
-    
- }
- const fullDetails = idMeal =>{
-     const displayHide = document.getElementById('search-result');
-     displayHide.style.display = 'none';
-     
-    
+
+//  Show Details Menu Description 
+    const fullDetails = idMeal =>{
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`
      fetch(url)
     .then(res => res.json())
@@ -60,6 +57,10 @@ const mealName = meals => {
        <p>${meals.strIngredient10}</p>
 
        `
+       const displayHide = document.getElementById('search-result');
+       displayHide.style.display = 'none';
+       const displayHideDetails = document.getElementById('menuDetails');
+       displayHideDetails.style.display = 'block';
  }
 
 
